@@ -127,6 +127,13 @@ class CleanerMLTestCase(common.BleachbitTestCase):
         with self.assertRaises(RuntimeError):
             xmlcleaner.os_match('linux', 'hal9000')
 
+        # as macOS
+        self.assertTrue(xmlcleaner.os_match('darwin', 'darwin'))
+        self.assertTrue(xmlcleaner.os_match('unix', 'darwin'))
+
+        # as OpenBSD
+        self.assertTrue(xmlcleaner.os_match('openbsd', 'openbsd'))
+
     def test_pot_fragment(self):
         """Unit test for pot_fragment()"""
         self.assertIsString(pot_fragment("Foo", 'bar.xml'))
